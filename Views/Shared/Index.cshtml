@@ -5,7 +5,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </head>
@@ -13,12 +12,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container">
-                <b id="title">Where in the world?</b>
-
-                
+                <b id="title">Where in the world?</b>        
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <button class="btn btn-dark" id="darkmodeBtn" onclick="darkmode()">Light Mode</button>
-
                 </div>
             </div>
         </nav>
@@ -48,8 +44,7 @@
         font-family: 'Nunito Sans', sans-serif;
     }
     .darkBlue {
-        background-color: hsl(209, 23%, 22%);
-        
+        background-color: hsl(209, 23%, 22%);      
     }
 
     .veryDarkBlue {
@@ -84,29 +79,28 @@
             opacity: 0.7;
         }
     /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
+    /*.modal {
+        display: none;*/ /* Hidden by default */
+        /*position: fixed;*/ /* Stay in place */
+        /*z-index: 1;*/ /* Sit on top */
+        /*padding-top: 100px;*/ /* Location of the box */
+        /*left: 0;
         top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+        width: 100%;*/ /* Full width */
+        /*height: 100%;*/ /* Full height */
+        /*overflow: auto;*/ /* Enable scroll if needed */
+        /*background-color: rgb(0,0,0);*/ /* Fallback color */
+        /*background-color: rgba(0,0,0,0.4);*/ /* Black w/ opacity */
+    /*}*/
 
-    /* Modal Content */
-    .modal-content {
+  /*  .modal-content {
         background-color: #fefefe;
         margin: auto;
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
         max-width: 500px;
-    }
+    }*/
 
     /*dark mode*/
     .dark-mode {
@@ -127,54 +121,41 @@
             filtroPesquisa();
         });
     });
-    //gets element of specific img
-    function openModal(element) {
-        var x = document.getElementById("darkmodeBtn")
-        if (x.className === "btn btn-dark") {
-            var modal = document.getElementById(element);
-            modal.style.display = "block";
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        }
-        else {
-            var modal = document.getElementById(element);
-            modal.style.display = "block";
+    //function openModal(element) {
+    //    var x = document.getElementById("darkmodeBtn")
+    //    if (x.className === "btn btn-dark") {
+    //        var modal = document.getElementById(element);
+    //        modal.style.display = "block";
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+    //        window.onclick = function (event) {
+    //            if (event.target == modal) {
+    //                modal.style.display = "none";
+    //            }
+    //        }
+    //    }
+    //    else {
+    //        var modal = document.getElementById(element);
+    //        modal.style.display = "block";
 
-            var modalContent = modal.childNodes;
-            modalContent[1].style.backgroundColor = "#1e1e1e";
-            var modalTable = modalContent.childNodes;
-            modalTable[3].style.backgroundColor = "#FF0000";
-            //modalContent.getElementsByTagName('table').style.backgroundColor="#FF0000"
+    //        window.onclick = function (event) {
+    //            if (event.target == modal) {
+    //                modal.style.display = "none";
+    //            }
+    //        }
 
-            //var modalContent = document.getElementsByClassName("modal-content");
-            //alert(modalContent);
-            //modalContent.style.backgroundColor = "#1e1e1e";
-        }
-    }
+    //        var modalContent = modal.childNodes;
+    //        modalContent[1].style.backgroundColor = "#1e1e1e";
+    //        var modalTable = modalContent.childNodes;
+    //        modalTable[3].style.backgroundColor = "#FF0000";
+         
+    //    }
+    //}
 
     function darkmode() {
         var element = document.body;
         var elements = document.getElementsByName("elements");
         element.classList.toggle("dark-mode");
-
-        //for (var i = 0; i < elements.length; i++) {
-        //    elements[i].classList.toggle("darkBlue");
-
-        //}
-
-
         var x = document.getElementById("darkmodeBtn");
         if (x.className === "btn btn-dark") {
             x.className = "btn btn-light";
@@ -182,19 +163,15 @@
             for (var i = 0; i < elements.length; i++) {
                 elements[i].classList.remove("white");
                 elements[i].classList.add("darkBlue");
-                //elements[i].setAttribute("class", "container darkBlue");
 
             }
         } else {
             x.className = "btn btn-dark";
             x.textContent = "Light Mode";
             for (var i = 0; i < elements.length; i++) {
-                //elements[i].setAttribute("class", "container white");
                 elements[i].classList.remove("darkBlue");
                 elements[i].classList.add("white");
             }
-
-
         }
     }
 
@@ -220,8 +197,8 @@
         });
     }
 
-    function changePage() {
-        location.replace("/Country");
+    //function changePage() {
+    //    location.replace("/Country");
         
-    }
+    //}
 </script>

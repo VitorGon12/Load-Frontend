@@ -1,11 +1,9 @@
 ﻿@model countrie.Models.Countries
 
 <div class="row" id="countries">
-    @*Loop through all countries*@
     @foreach (var country in Model.countries)
     {
 <div class="col-md-3 p-3">
-    @*Image*@
     <div class="container white" name="elements">
         @*<img src="@country.flags.png" alt="Flag of @country.name.common" class="img-fluid rounded" id="@country.name.common Img" onclick="openModal('@country.name.common')">*@
         <img src="@country.flags.png" alt="Flag of @country.name.common" class="img-fluid rounded" id="@country.name.common Img" onclick="changePage()">
@@ -20,8 +18,7 @@
         </div>
     </div>
 
-    @*Modal*@
-    <div id="@country.name.common" class="modal">
+    @*<div id="@country.name.common" class="modal">
         <div class="modal-content">
             <p>Name: @country.name.common</p>
             <p>Capital: @country.capital</p>
@@ -55,6 +52,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
-</div>}
+    </div>*@
+</div>
+    }
 </div>
