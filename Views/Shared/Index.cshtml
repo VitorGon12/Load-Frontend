@@ -1,0 +1,227 @@
+﻿@{ ViewData["Title"] = "Home Page"; }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+<body class="veryLightGray Fonte" >
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+            <div class="container">
+                <b id="title">Where in the world?</b>
+
+                
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <button class="btn btn-dark" id="darkmodeBtn" onclick="darkmode()">Light Mode</button>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="text-center">
+        <div class="row">
+            <div class="col-sm-5">
+                <input class="form-control" id="filtro" placeholder="Search for a Country"/>
+                @*<i class="fa fa-search" onclick="filtroPesquisa()"></i>*@
+            </div>
+            <div class="ml-auto">
+                <select class="form-control" id="region">
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Asia">Asia</option>
+                </select>
+            </div>
+
+        </div>
+        <div id="divCountries"></div>
+
+</body>
+<style>
+    .Fonte {
+        font-family: 'Nunito Sans', sans-serif;
+    }
+    .darkBlue {
+        background-color: hsl(209, 23%, 22%);
+        
+    }
+
+    .veryDarkBlue {
+        background-color: hsl(207, 26%, 17%);
+    }
+
+    .verDarkBlueLight {
+        background-color: hsl(200, 15%, 8%)
+    }
+
+    .darkGray {
+        background-color: hsl(0, 0%, 52%);
+    }
+
+    .veryLightGray {
+        background-color: hsl(0, 0%, 98%);
+    }
+
+    .white {
+        background-color: hsl(0, 0%, 100%);
+    }
+
+    .container {
+        padding: 2px;
+    }
+
+    .img-fluid {
+        cursor: pointer;
+    }
+
+        .img-fluid:hover {
+            opacity: 0.7;
+        }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    /*dark mode*/
+    .dark-mode {
+        background-color: hsl(207, 26%, 17%);
+        color: hsl(0, 0%, 100%);
+    }
+
+    .table {
+        color: inherit;
+    }
+</style>
+
+<script>
+    $(() => {
+        filtroPesquisa();
+
+        $('#filtro').on('keyup', () => {
+            filtroPesquisa();
+        });
+    });
+    //gets element of specific img
+    function openModal(element) {
+        var x = document.getElementById("darkmodeBtn")
+        if (x.className === "btn btn-dark") {
+            var modal = document.getElementById(element);
+            modal.style.display = "block";
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+        else {
+            var modal = document.getElementById(element);
+            modal.style.display = "block";
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            var modalContent = modal.childNodes;
+            modalContent[1].style.backgroundColor = "#1e1e1e";
+            var modalTable = modalContent.childNodes;
+            modalTable[3].style.backgroundColor = "#FF0000";
+            //modalContent.getElementsByTagName('table').style.backgroundColor="#FF0000"
+
+            //var modalContent = document.getElementsByClassName("modal-content");
+            //alert(modalContent);
+            //modalContent.style.backgroundColor = "#1e1e1e";
+        }
+    }
+
+    function darkmode() {
+        var element = document.body;
+        var elements = document.getElementsByName("elements");
+        element.classList.toggle("dark-mode");
+
+        //for (var i = 0; i < elements.length; i++) {
+        //    elements[i].classList.toggle("darkBlue");
+
+        //}
+
+
+        var x = document.getElementById("darkmodeBtn");
+        if (x.className === "btn btn-dark") {
+            x.className = "btn btn-light";
+            x.textContent = "Dark Mode";
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].classList.remove("white");
+                elements[i].classList.add("darkBlue");
+                //elements[i].setAttribute("class", "container darkBlue");
+
+            }
+        } else {
+            x.className = "btn btn-dark";
+            x.textContent = "Light Mode";
+            for (var i = 0; i < elements.length; i++) {
+                //elements[i].setAttribute("class", "container white");
+                elements[i].classList.remove("darkBlue");
+                elements[i].classList.add("white");
+            }
+
+
+        }
+    }
+
+
+    function filtroPesquisa() {
+
+        var filtro = document.getElementById("filtro").value;
+        var regiao = document.getElementById("region").value;
+
+        $.ajax({
+            url: '@Url.Action("searchCountries","Countries")',
+            type: "GET",
+            dataType: 'html',
+            data: { filtro: filtro , regiao: regiao },
+            success: function (result) {
+                if (result == null) return;
+                if (result.length == 0) return;
+                $('#divCountries').html('').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function changePage() {
+        location.replace("/Country");
+        
+    }
+</script>
